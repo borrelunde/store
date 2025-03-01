@@ -1,9 +1,12 @@
 package com.borrelunde.store;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author B. Lunde
  * @since 2025.03.01
  */
+@Service
 public class PayPalPaymentService implements PaymentService {
 
 	@Override
