@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
  * @author B. Lunde
  * @since 2025.03.01
  */
-@Service
+@Service("stripe")
 @Primary
 public class StripePaymentService implements PaymentService {
 

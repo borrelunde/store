@@ -1,5 +1,6 @@
 package com.borrelunde.store;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,7 +12,7 @@ public class OrderService {
 
 	private final PaymentService paymentService;
 
-	public OrderService(final PaymentService paymentService) {
+	public OrderService(@Qualifier("paypal") final PaymentService paymentService) {
 		this.paymentService = paymentService;
 	}
 
