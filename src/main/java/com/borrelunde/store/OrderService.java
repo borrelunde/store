@@ -6,7 +6,7 @@ package com.borrelunde.store;
  */
 public class OrderService {
 
-	private final PaymentService paymentService;
+	private PaymentService paymentService;
 
 	public OrderService(PaymentService paymentService) {
 		this.paymentService = paymentService;
