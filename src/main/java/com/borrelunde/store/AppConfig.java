@@ -3,7 +3,6 @@ package com.borrelunde.store;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 
 /**
  * @author B. Lunde
@@ -26,7 +25,6 @@ public class AppConfig {
 	}
 
 	@Bean
-	@Lazy
 	public OrderService orderService() {
 		return new OrderService(getPaymentService());
 	}
