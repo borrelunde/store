@@ -29,6 +29,7 @@ public class AppConfig {
 		return new OrderService(getPaymentService());
 	}
 
+	@SuppressWarnings("SwitchStatementWithTooFewBranches")
 	private PaymentService getPaymentService() {
 		return switch (paymentMethod) {
 			case "paypal" -> paypal();
