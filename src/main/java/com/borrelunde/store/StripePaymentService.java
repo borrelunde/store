@@ -1,9 +1,14 @@
 package com.borrelunde.store;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
+
 /**
  * @author B. Lunde
  * @since 2025.03.01
  */
+@Service
+@Primary
 public class StripePaymentService implements PaymentService {
 
 	@Override
