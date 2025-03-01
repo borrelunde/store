@@ -12,7 +12,7 @@ public class OrderService {
 
 	private final PaymentService paymentService;
 
-	public OrderService(@Qualifier("paypal") final PaymentService paymentService) {
+	public OrderService(@Qualifier("stripe") final PaymentService paymentService) {
 		this.paymentService = paymentService;
 	}
 
