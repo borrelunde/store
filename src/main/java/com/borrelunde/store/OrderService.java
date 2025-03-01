@@ -10,6 +10,7 @@ public class OrderService {
 
 	public OrderService(final PaymentService paymentService) {
 		this.paymentService = paymentService;
+		System.out.println("OrderService created");
 	}
 
 	public void placeOrder() {
