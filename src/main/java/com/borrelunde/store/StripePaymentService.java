@@ -1,8 +1,6 @@
 package com.borrelunde.store;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,8 +8,6 @@ import java.util.List;
  * @author B. Lunde
  * @since 2025.03.01
  */
-@Service("stripe")
-@Primary
 public class StripePaymentService implements PaymentService {
 
 	@Value("${stripe.apiUrl}")
