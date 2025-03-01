@@ -6,13 +6,13 @@ package com.borrelunde.store;
  */
 public class OrderService {
 
-	private PaymentService paymentService;
+	private final PaymentService paymentService;
+
+	public OrderService(final PaymentService paymentService) {
+		this.paymentService = paymentService;
+	}
 
 	public void placeOrder() {
 		paymentService.processPayment(10.0);
-	}
-
-	public void setPaymentService(final PaymentService paymentService) {
-		this.paymentService = paymentService;
 	}
 }
