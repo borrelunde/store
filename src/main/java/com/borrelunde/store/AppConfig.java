@@ -3,7 +3,6 @@ package com.borrelunde.store;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 
 /**
  * @author B. Lunde
@@ -36,5 +35,20 @@ public class AppConfig {
 			case "paypal" -> paypal();
 			default -> stripe();
 		};
+	}
+
+	@Bean
+	public NotificationService email() {
+		return new EmailNotificationService();
+	}
+
+	@Bean
+	public UserRepository inMemoryUserRepository() {
+		return new InMemoryUserRepository();
+	}
+
+	@Bean
+	public UserService userService() {
+		return new UserService(inMemoryUserRepository(), email());
 	}
 }

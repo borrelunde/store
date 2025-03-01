@@ -7,3 +7,6 @@ stripe:
   enabled: true
   supported-currencies: USD,EUR,GBP
 payment-method: paypal
+email:
+  host: "localhost"
+  port: 25
