@@ -13,6 +13,7 @@ public class StoreApplication {
 		StoreService storeService = context.getBean(StoreService.class);
 
 		// storeService.createNewProductAndAssignToCategory();
-		storeService.fetchCategoryAndCreateNewProduct();
+		// storeService.fetchCategoryAndCreateNewProduct();
+		storeService.fetchExistingUserAndAddAllExistingProductsToWishlist();
 	}
 }

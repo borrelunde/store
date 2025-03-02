@@ -1,14 +1,18 @@
 package com.borrelunde.store.services;
 
 import com.borrelunde.store.entities.Category;
+import com.borrelunde.store.entities.User;
 import com.borrelunde.store.repositories.CategoryRepository;
 import com.borrelunde.store.entities.Product;
 import com.borrelunde.store.repositories.ProductRepository;
+import com.borrelunde.store.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author B. Lunde
@@ -20,6 +24,7 @@ public class StoreService {
 
 	private final ProductRepository productRepository;
 	private final CategoryRepository categoryRepository;
+	private final UserRepository userRepository;
 
 	public void createNewProductAndAssignToCategory() {
 		Category category = Category.builder()
@@ -48,5 +53,12 @@ public class StoreService {
 				.build();
 
 		productRepository.save(product);
+	}
+
+	public void fetchExistingUserAndAddAllExistingProductsToWishlist() {
+		User user = userRepository.findById(2L).orElseThrow();
+		List<Product> allProducts = (List<Product>) productRepository.findAll();
+		user.setWishlist(allProducts);
+		userRepository.save(user);
 	}
 }
