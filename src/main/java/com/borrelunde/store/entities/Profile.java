@@ -1,8 +1,7 @@
 package com.borrelunde.store.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -12,6 +11,10 @@ import java.time.LocalDate;
  */
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
 @Entity
 @Table(name = "profiles")
 public class Profile {
@@ -32,4 +35,10 @@ public class Profile {
 
 	@Column(name = "loyalty_points")
 	private Integer loyaltyPoints;
+
+	@OneToOne
+	@JoinColumn(name = "id")
+	@MapsId
+	@ToString.Exclude
+	private User user;
 }

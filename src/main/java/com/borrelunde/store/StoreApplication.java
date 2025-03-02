@@ -1,6 +1,7 @@
 package com.borrelunde.store;
 
 import com.borrelunde.store.entities.Address;
+import com.borrelunde.store.entities.Profile;
 import com.borrelunde.store.entities.Tag;
 import com.borrelunde.store.entities.User;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +21,11 @@ public class StoreApplication {
 				.password("password")
 				.build();
 
-		user.addTag("Tag one");
+		var profile = Profile.builder()
+				.bio("Some text")
+				.build();
+
+		user.addProfile(profile);
 
 		System.out.printf("User: %s\n", user);
 	}
