@@ -1,5 +1,6 @@
 package com.borrelunde.store.services;
 
+import com.borrelunde.store.entities.Address;
 import com.borrelunde.store.entities.Profile;
 import com.borrelunde.store.entities.User;
 import com.borrelunde.store.repositories.AddressRepository;
@@ -52,5 +53,24 @@ public class UserService {
 
 	public void fetchAddress() {
 		addressRepository.findById(1L).orElseThrow();
+	}
+
+	public void persistRelated() {
+		User user = User.builder()
+				.name("John")
+				.email("john@mail.com")
+				.password("password")
+				.build();
+
+		Address address = Address.builder()
+				.street("street")
+				.city("city")
+				.state("state")
+				.zip("zip")
+				.build();
+
+		user.addAddress(address);
+
+		userRepository.save(user);
 	}
 }
