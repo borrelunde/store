@@ -1,8 +1,7 @@
 package com.borrelunde.store.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author B. Lunde
@@ -10,6 +9,9 @@ import lombok.Setter;
  */
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
 public class User {
