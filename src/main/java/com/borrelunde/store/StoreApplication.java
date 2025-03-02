@@ -12,6 +12,7 @@ public class StoreApplication {
 		ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 		StoreService storeService = context.getBean(StoreService.class);
 
-		storeService.createNewProductAndAssignToCategory();
+		// storeService.createNewProductAndAssignToCategory();
+		storeService.fetchCategoryAndCreateNewProduct();
 	}
 }
