@@ -1,6 +1,8 @@
 package com.borrelunde.store.services;
 
+import com.borrelunde.store.entities.Profile;
 import com.borrelunde.store.entities.User;
+import com.borrelunde.store.repositories.ProfileRepository;
 import com.borrelunde.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
 	private final UserRepository userRepository;
+	private final ProfileRepository profileRepository;
 	private final EntityManager entityManager;
 
 	@Transactional
@@ -36,5 +39,12 @@ public class UserService {
 		} else {
 			System.out.println("Transient/Detached");
 		}
+	}
+
+	@Transactional
+	public void showRelatedEntities() {
+		Profile profile = profileRepository.findById(2L).orElseThrow();
+		System.out.printf("Profile bio: %s\n", profile.getBio());
+		System.out.printf("Profile user name: %s\n", profile.getUser().getName());
 	}
 }
