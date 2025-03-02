@@ -17,10 +17,10 @@ public class Product {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "name", nullable = false)
+	@Column(name = "name")
 	private String name;
 
-	@Column(name = "description", columnDefinition = "text", nullable = false)
+	@Column(name = "description")
 	private String description;
 
 	@Column(name = "price")
