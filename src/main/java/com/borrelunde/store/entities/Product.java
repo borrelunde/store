@@ -17,8 +17,11 @@ public class Product {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", nullable = false)
 	private String name;
+
+	@Column(name = "description", columnDefinition = "text", nullable = false)
+	private String description;
 
 	@Column(name = "price")
 	private BigDecimal price;
