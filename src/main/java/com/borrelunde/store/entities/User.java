@@ -36,7 +36,7 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
 	@Builder.Default
 	private List<Address> addresses = new ArrayList<>();
 
@@ -70,7 +70,7 @@ public class User {
 		tag.getUsers().remove(this);
 	}
 
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private Profile profile;
 
 	public void addProfile(final Profile profile) {
