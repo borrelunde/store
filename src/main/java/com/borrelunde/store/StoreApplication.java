@@ -10,12 +10,5 @@ public class StoreApplication {
 
 	public static void main(String[] args) {
 		// ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
-
-		var user = User.builder()
-				.id(1L)
-				.name("John")
-				.email("john@gmail.com")
-				.password("password")
-				.build();
 	}
 }
