@@ -1,19 +1,22 @@
 package com.borrelunde.store.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "categories")
 public class Category {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Byte id;
 
@@ -21,5 +24,6 @@ public class Category {
 	private String name;
 
 	@OneToMany(mappedBy = "category")
+	@Builder.Default
 	private Set<Product> products = new HashSet<>();
 }

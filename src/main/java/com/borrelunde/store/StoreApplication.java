@@ -1,6 +1,6 @@
 package com.borrelunde.store;
 
-import com.borrelunde.store.services.UserService;
+import com.borrelunde.store.services.StoreService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -10,8 +10,8 @@ public class StoreApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
-		UserService userService = context.getBean(UserService.class);
+		StoreService storeService = context.getBean(StoreService.class);
 
-		userService.deleteRelated();
+		storeService.createNewProductAndAssignToCategory();
 	}
 }
