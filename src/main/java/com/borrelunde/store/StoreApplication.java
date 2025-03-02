@@ -14,6 +14,7 @@ public class StoreApplication {
 
 		// storeService.createNewProductAndAssignToCategory();
 		// storeService.fetchCategoryAndCreateNewProduct();
-		storeService.fetchExistingUserAndAddAllExistingProductsToWishlist();
+		// storeService.fetchExistingUserAndAddAllExistingProductsToWishlist();
+		storeService.deleteAnExistingProduct();
 	}
 }

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author B. Lunde
@@ -60,5 +59,10 @@ public class StoreService {
 		List<Product> allProducts = (List<Product>) productRepository.findAll();
 		user.setWishlist(allProducts);
 		userRepository.save(user);
+	}
+
+	public void deleteAnExistingProduct() {
+		Product product = productRepository.findById(1L).orElseThrow();
+		productRepository.delete(product);
 	}
 }
