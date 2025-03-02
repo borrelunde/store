@@ -82,4 +82,13 @@ public class User {
 		this.profile = null;
 		profile.setUser(null);
 	}
+
+	@ManyToMany
+	@JoinTable(
+			name = "wishlist",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "product_id")
+	)
+	@Builder.Default
+	private List<Product> wishlist = new ArrayList<>();
 }
