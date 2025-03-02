@@ -2,6 +2,7 @@ package com.borrelunde.store.services;
 
 import com.borrelunde.store.entities.Profile;
 import com.borrelunde.store.entities.User;
+import com.borrelunde.store.repositories.AddressRepository;
 import com.borrelunde.store.repositories.ProfileRepository;
 import com.borrelunde.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
@@ -19,6 +20,7 @@ public class UserService {
 
 	private final UserRepository userRepository;
 	private final ProfileRepository profileRepository;
+	private final AddressRepository addressRepository;
 	private final EntityManager entityManager;
 
 	@Transactional
@@ -46,5 +48,9 @@ public class UserService {
 		Profile profile = profileRepository.findById(2L).orElseThrow();
 		System.out.printf("Profile bio: %s\n", profile.getBio());
 		System.out.printf("Profile user name: %s\n", profile.getUser().getName());
+	}
+
+	public void fetchAddress() {
+		addressRepository.findById(1L).orElseThrow();
 	}
 }
