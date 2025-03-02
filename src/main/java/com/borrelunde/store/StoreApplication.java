@@ -1,6 +1,7 @@
 package com.borrelunde.store;
 
 import com.borrelunde.store.entities.Address;
+import com.borrelunde.store.entities.Tag;
 import com.borrelunde.store.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,15 +20,8 @@ public class StoreApplication {
 				.password("password")
 				.build();
 
-		var address = Address.builder()
-				.id(1L)
-				.street("Street")
-				.city("City")
-				.zip("Zip")
-				.state("State")
-				.build();
+		user.addTag("Tag one");
 
-		user.addAddress(address);
 		System.out.printf("User: %s\n", user);
 	}
 }
