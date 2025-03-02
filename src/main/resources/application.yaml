@@ -7,12 +7,3 @@ spring:
     url: jdbc:mysql://localhost:3306/store?createDatabaseIfNotExist=true
     username: ${spring.datasource.username}
     password: ${spring.datasource.password}
-stripe:
-  apiUrl: https://api.stripe.com
-  timeout: 1000
-  enabled: true
-  supported-currencies: USD,EUR,GBP
-payment-method: paypal
-email:
-  host: "localhost"
-  port: 25
