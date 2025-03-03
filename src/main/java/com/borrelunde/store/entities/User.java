@@ -17,7 +17,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 @Entity
 @Table(name = "users")
 public class User {
@@ -91,4 +90,12 @@ public class User {
 	)
 	@Builder.Default
 	private List<Product> wishlist = new ArrayList<>();
+
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + "(" +
+		       "id = " + id + ", " +
+		       "name = " + name + ", " +
+		       "email = " + email + ")";
+	}
 }
