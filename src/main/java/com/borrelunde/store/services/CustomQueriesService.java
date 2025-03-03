@@ -4,6 +4,7 @@ import com.borrelunde.store.dtos.UserSummary;
 import com.borrelunde.store.entities.Profile;
 import com.borrelunde.store.entities.User;
 import com.borrelunde.store.repositories.ProfileRepository;
+import com.borrelunde.store.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +20,11 @@ import java.util.List;
 public class CustomQueriesService {
 
 	private final ProfileRepository profileRepository;
+	private final UserRepository userRepository;
 
-	public CustomQueriesService(final ProfileRepository profileRepository) {
+	public CustomQueriesService(final ProfileRepository profileRepository, final UserRepository userRepository) {
 		this.profileRepository = profileRepository;
+		this.userRepository = userRepository;
 	}
 
 	public void populateDatabaseWithUsersAndProfilesWithLoyaltyPoints() {
@@ -37,11 +40,11 @@ public class CustomQueriesService {
 	}
 
 	@Transactional
-	public void fetchProfilesWithMoreThanTwoLoyaltyPoints() {
-		List<UserSummary> profiles = profileRepository.findProfiles(2);
-		System.out.printf("Profiles with more than 2 loyalty points: %d\n", profiles.size());
+	public void printLoyalUsers() {
+		List<UserSummary> profiles = userRepository.findLoyalUsers(2);
+		System.out.printf("Users with more than 2 loyalty points: %d\n", profiles.size());
 		profiles.forEach(summary ->
-				System.out.printf("- Profile ID: %d, user email: %s\n",
+				System.out.printf("- User ID: %d, user email: %s\n",
 						summary.getId(),
 						summary.getEmail())
 		);

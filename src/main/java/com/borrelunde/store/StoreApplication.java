@@ -13,6 +13,6 @@ public class StoreApplication {
 		CustomQueriesService customQueriesService = context.getBean(CustomQueriesService.class);
 
 		// customQueriesService.populateDatabaseWithUsersAndProfilesWithLoyaltyPoints();
-		customQueriesService.fetchProfilesWithMoreThanTwoLoyaltyPoints();
+		customQueriesService.printLoyalUsers();
 	}
 }
