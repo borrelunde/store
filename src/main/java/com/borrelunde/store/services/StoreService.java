@@ -91,4 +91,10 @@ public class StoreService {
 			u.getAddresses().forEach(System.out::println);
 		});
 	}
+
+	@Transactional
+	public void fetchProductsUsingProcedure() {
+		List<Product> products = productRepository.findProducts(BigDecimal.valueOf(1), BigDecimal.valueOf(15));
+		products.forEach(System.out::println);
+	}
 }
