@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ProfileRepository extends CrudRepository<Profile, Long> {
 	@EntityGraph(attributePaths = "user")
-	List<Profile> findProfilesByLoyaltyPointsGreaterThan(int loyaltyPoints);
+	List<Profile> findProfilesByLoyaltyPointsGreaterThanOrderByUserEmail(int loyaltyPoints);
 }
