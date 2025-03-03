@@ -1,5 +1,6 @@
 package com.borrelunde.store.services;
 
+import com.borrelunde.store.dtos.UserSummary;
 import com.borrelunde.store.entities.Profile;
 import com.borrelunde.store.entities.User;
 import com.borrelunde.store.repositories.ProfileRepository;
@@ -37,11 +38,12 @@ public class CustomQueriesService {
 
 	@Transactional
 	public void fetchProfilesWithMoreThanTwoLoyaltyPoints() {
-		List<Profile> profiles = profileRepository.findProfiles(2);
+		List<UserSummary> profiles = profileRepository.findProfiles(2);
 		System.out.printf("Profiles with more than 2 loyalty points: %d\n", profiles.size());
-		profiles.forEach(profile ->
+		profiles.forEach(summary ->
 				System.out.printf("- Profile ID: %d, user email: %s\n",
-						profile.getId(),
-						profile.getUser().getEmail()));
+						summary.getId(),
+						summary.getEmail())
+		);
 	}
 }
