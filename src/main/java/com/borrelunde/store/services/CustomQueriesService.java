@@ -37,7 +37,7 @@ public class CustomQueriesService {
 
 	@Transactional
 	public void fetchProfilesWithMoreThanTwoLoyaltyPoints() {
-		List<Profile> profiles = profileRepository.findProfilesByLoyaltyPointsGreaterThanOrderByUserEmail(2);
+		List<Profile> profiles = profileRepository.findProfiles(2);
 		System.out.printf("Profiles with more than 2 loyalty points: %d\n", profiles.size());
 		profiles.forEach(profile ->
 				System.out.printf("- Profile ID: %d, user email: %s\n",
