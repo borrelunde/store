@@ -65,4 +65,9 @@ public class StoreService {
 		Product product = productRepository.findById(1L).orElseThrow();
 		productRepository.delete(product);
 	}
+
+	@Transactional  // An updating query requires the transactional annotation.
+	public void updateProductPrices() {
+		productRepository.updatePriceByCategory(BigDecimal.valueOf(10), (byte) 1);
+	}
 }

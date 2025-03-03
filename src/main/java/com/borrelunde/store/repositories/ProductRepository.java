@@ -1,7 +1,10 @@
 package com.borrelunde.store.repositories;
 
 import com.borrelunde.store.entities.Product;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -39,4 +42,34 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 	// Limit (Top/First)
 	List<Product> findTop5ByNameOrderByPrice(String name);  // downside: 5 is hardcoded
 	List<Product> findFirst5ByNameLikeOrderByPrice(String name);  // downside: 5 is hardcoded
+
+
+	// Find products whose prices are in a given range and sort by name.
+
+	// Using a derived query is possible like so:
+	List<Product> findByPriceBetweenOrderByName(BigDecimal min, BigDecimal max);
+
+	// But you can also use @Query to write your own query, in SQL or JPQL (Java
+	// Persistent Query Language). You can extract a derived query method to a
+	// JPQL Query method.
+
+	// Using SQL:
+	@Query(value = "select * from products p where p.price between :min and :max order by p.name", nativeQuery = true)
+	List<Product> findProductsUsingSql(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
+
+	// Using JPQL:
+	@Query("select p from Product p where p.price between :min and :max order by p.name")
+	List<Product> findProductsUsingJpql(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
+
+	// Using JPQL (extracted from a derived query method):
+	@Query("select p from Product p join p.category where p.price between :min and :max order by p.name")
+	List<Product> findProducts(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
+
+	@Query("select count(*) from Product p where p.price between :min and :max")
+	long countProducts(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
+
+	// Use the modifying annotation when you update, not select.
+	@Modifying
+	@Query("update Product p set p.price = :newPrice where p.category.id = :categoryId")
+	void updatePriceByCategory(BigDecimal newPrice, Byte categoryId);
 }
