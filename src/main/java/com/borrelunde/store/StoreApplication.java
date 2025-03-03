@@ -17,6 +17,7 @@ public class StoreApplication {
 		// storeService.fetchExistingUserAndAddAllExistingProductsToWishlist();
 		// storeService.deleteAnExistingProduct();
 
-		storeService.updateProductPrices();
+		// storeService.updateProductPrices();
+		storeService.fetchProducts();
 	}
 }

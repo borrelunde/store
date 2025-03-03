@@ -1,5 +1,7 @@
 package com.borrelunde.store.repositories;
 
+import com.borrelunde.store.dtos.ProductSummaryDto;
+import com.borrelunde.store.entities.Category;
 import com.borrelunde.store.entities.Product;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -72,4 +74,12 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 	@Modifying
 	@Query("update Product p set p.price = :newPrice where p.category.id = :categoryId")
 	void updatePriceByCategory(BigDecimal newPrice, Byte categoryId);
+
+
+	// Projections lets you query the data you need and not more.
+
+	// Recommended to use interface DTO, use class DTO when you need extra logic.
+	// Here: ProductSummary (interface) vs. ProductSummaryDto (class).
+	@Query("select new com.borrelunde.store.dtos.ProductSummaryDto(p.id, p.name) from Product p where p.category = :category")
+	List<ProductSummaryDto> findByCategory(@Param("category") Category category);
 }

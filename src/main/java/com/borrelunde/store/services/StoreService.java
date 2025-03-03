@@ -1,5 +1,6 @@
 package com.borrelunde.store.services;
 
+import com.borrelunde.store.dtos.ProductSummary;
 import com.borrelunde.store.entities.Category;
 import com.borrelunde.store.entities.User;
 import com.borrelunde.store.repositories.CategoryRepository;
@@ -69,5 +70,10 @@ public class StoreService {
 	@Transactional  // An updating query requires the transactional annotation.
 	public void updateProductPrices() {
 		productRepository.updatePriceByCategory(BigDecimal.valueOf(10), (byte) 1);
+	}
+
+	public void fetchProducts() {
+		var products = productRepository.findByCategory(new Category((byte) 1));
+		products.forEach(System.out::println);
 	}
 }
