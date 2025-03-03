@@ -12,6 +12,7 @@ public class StoreApplication {
 		ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 		CustomQueriesService customQueriesService = context.getBean(CustomQueriesService.class);
 
-		customQueriesService.populateDatabaseWithUsersAndProfilesWithLoyaltyPoints();
+		// customQueriesService.populateDatabaseWithUsersAndProfilesWithLoyaltyPoints();
+		customQueriesService.fetchProfilesWithMoreThanTwoLoyaltyPoints();
 	}
 }

@@ -33,4 +33,10 @@ public class CustomQueriesService {
 
 		profileRepository.saveAll(List.of(johnProfile, janeProfile, robertProfile));
 	}
+
+	public void fetchProfilesWithMoreThanTwoLoyaltyPoints() {
+		List<Profile> profiles = profileRepository.findProfilesByLoyaltyPointsGreaterThan(2);
+		System.out.printf("Profiles with more than 2 loyalty points: %d\n", profiles.size());
+		profiles.forEach(profile -> System.out.printf("- Profile ID: %d\n", profile.getId()));
+	}
 }
