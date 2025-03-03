@@ -3,6 +3,7 @@ package com.borrelunde.store.services;
 import com.borrelunde.store.entities.Profile;
 import com.borrelunde.store.entities.User;
 import com.borrelunde.store.repositories.ProfileRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,9 +35,13 @@ public class CustomQueriesService {
 		profileRepository.saveAll(List.of(johnProfile, janeProfile, robertProfile));
 	}
 
+	@Transactional
 	public void fetchProfilesWithMoreThanTwoLoyaltyPoints() {
 		List<Profile> profiles = profileRepository.findProfilesByLoyaltyPointsGreaterThan(2);
 		System.out.printf("Profiles with more than 2 loyalty points: %d\n", profiles.size());
-		profiles.forEach(profile -> System.out.printf("- Profile ID: %d\n", profile.getId()));
+		profiles.forEach(profile ->
+				System.out.printf("- Profile ID: %d, user email: %s\n",
+						profile.getId(),
+						profile.getUser().getEmail()));
 	}
 }
