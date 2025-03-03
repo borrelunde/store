@@ -19,6 +19,6 @@ public class StoreApplication {
 
 		// storeService.updateProductPrices();
 		// storeService.fetchProducts();
-		storeService.fetchUser();
+		storeService.fetchUsers();
 	}
 }

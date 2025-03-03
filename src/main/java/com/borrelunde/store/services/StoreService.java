@@ -82,4 +82,13 @@ public class StoreService {
 		User user = userRepository.findByEmail("john@mail.com").orElseThrow();
 		System.out.printf("User: %s\n", user);
 	}
+
+	@Transactional
+	public void fetchUsers() {
+		Iterable<User> users = userRepository.findAllWithAddresses();
+		users.forEach(u -> {
+			System.out.println(u);
+			u.getAddresses().forEach(System.out::println);
+		});
+	}
 }
