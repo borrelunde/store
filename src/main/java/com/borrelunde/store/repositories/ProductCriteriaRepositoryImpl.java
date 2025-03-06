@@ -34,7 +34,7 @@ public class ProductCriteriaRepositoryImpl implements ProductCriteriaRepository 
 		List<Predicate> predicates = new ArrayList<>();
 		if (name != null) {
 			// name like name
-			predicates.add(builder.equal(root.get("name"), name));
+			predicates.add(builder.like(root.get("name"), "%" + name + "%"));
 		}
 		if (minPrice != null) {
 			// price >= minPrice
