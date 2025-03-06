@@ -11,6 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -24,6 +25,7 @@ public class Category {
 	private String name;
 
 	@OneToMany(mappedBy = "category")
+	@ToString.Exclude
 	@Builder.Default
 	private Set<Product> products = new HashSet<>();
 

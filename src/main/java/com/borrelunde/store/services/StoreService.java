@@ -143,7 +143,7 @@ public class StoreService {
 
 	public void fetchProductsByCriteria() {
 		List<Product> products = productRepository.findProductsByCriteria(
-				null, BigDecimal.valueOf(1), BigDecimal.valueOf(3));
+				null, BigDecimal.valueOf(1), BigDecimal.valueOf(3), null);
 		products.forEach(System.out::println);
 	}
 
