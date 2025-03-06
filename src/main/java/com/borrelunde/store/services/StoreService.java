@@ -6,10 +6,12 @@ import com.borrelunde.store.repositories.CategoryRepository;
 import com.borrelunde.store.entities.Product;
 import com.borrelunde.store.repositories.ProductRepository;
 import com.borrelunde.store.repositories.UserRepository;
+import com.borrelunde.store.repositories.specifications.ProductSpecification;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -142,6 +144,21 @@ public class StoreService {
 	public void fetchProductsByCriteria() {
 		List<Product> products = productRepository.findProductsByCriteria(
 				null, BigDecimal.valueOf(1), BigDecimal.valueOf(3));
+		products.forEach(System.out::println);
+	}
+
+	public void fetchProductsBySpecifications(String name, BigDecimal minPrice, BigDecimal maxPrice) {
+		Specification<Product> specification = Specification.where(null);
+		if (name != null) {
+			specification = specification.and(ProductSpecification.hasName(name));
+		}
+		if (minPrice != null) {
+			specification = specification.and(ProductSpecification.hasPriceGreaterThanOrEqualTo(minPrice));
+		}
+		if (maxPrice != null) {
+			specification = specification.and(ProductSpecification.hasPriceLessThanOrEqualTo(maxPrice));
+		}
+		List<Product> products = productRepository.findAll(specification);
 		products.forEach(System.out::println);
 	}
 }
