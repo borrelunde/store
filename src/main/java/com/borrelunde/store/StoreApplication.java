@@ -13,6 +13,6 @@ public class StoreApplication {
 		StoreService storeService = context.getBean(StoreService.class);
 
 		// storeService.prepareQueryByExample();
-		storeService.fetchProductsUsingQueryByExample();
+		storeService.fetchProductsByCriteria();
 	}
 }

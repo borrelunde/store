@@ -138,4 +138,10 @@ public class StoreService {
 		List<Product> products = productRepository.findAll(example);
 		products.forEach(System.out::println);
 	}
+
+	public void fetchProductsByCriteria() {
+		List<Product> products = productRepository.findProductsByCriteria(
+				null, BigDecimal.valueOf(1), BigDecimal.valueOf(3));
+		products.forEach(System.out::println);
+	}
 }
