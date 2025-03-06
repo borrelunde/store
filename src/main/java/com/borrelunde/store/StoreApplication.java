@@ -5,8 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import java.math.BigDecimal;
-
 @SpringBootApplication
 public class StoreApplication {
 
@@ -14,6 +12,6 @@ public class StoreApplication {
 		ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 		StoreService storeService = context.getBean(StoreService.class);
 
-		storeService.fetchProductsBySpecifications("ban", BigDecimal.valueOf(1), null);
+		storeService.fetchPaginatedProducts(0, 10);
 	}
 }

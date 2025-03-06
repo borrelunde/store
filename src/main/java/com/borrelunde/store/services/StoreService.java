@@ -9,13 +9,13 @@ import com.borrelunde.store.repositories.UserRepository;
 import com.borrelunde.store.repositories.specifications.ProductSpecification;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * @author B. Lunde
@@ -160,5 +160,26 @@ public class StoreService {
 		}
 		List<Product> products = productRepository.findAll(specification);
 		products.forEach(System.out::println);
+	}
+
+	public void fetchSortedProducts() {
+		Sort sort = Sort.by("name").and(
+				Sort.by("price").descending()
+		);
+		List<Product> products = productRepository.findAll(sort);
+		products.forEach(System.out::println);
+	}
+
+	public void fetchPaginatedProducts(int pageNumber, int size) {
+		PageRequest pageRequest = PageRequest.of(pageNumber, size);
+		Page<Product> page = productRepository.findAll(pageRequest);
+
+		Stream<Product> products = page.get();
+		products.forEach(System.out::println);
+
+		int totalPages = page.getTotalPages();
+		long totalElements = page.getTotalElements();
+		System.out.printf("Total pages: %d\n", totalPages);
+		System.out.printf("Total elements: %d\n", totalElements);
 	}
 }
