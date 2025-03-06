@@ -1,6 +1,5 @@
 package com.borrelunde.store.services;
 
-import com.borrelunde.store.dtos.ProductSummary;
 import com.borrelunde.store.entities.Category;
 import com.borrelunde.store.entities.User;
 import com.borrelunde.store.repositories.CategoryRepository;
@@ -9,6 +8,8 @@ import com.borrelunde.store.repositories.ProductRepository;
 import com.borrelunde.store.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -95,6 +96,46 @@ public class StoreService {
 	@Transactional
 	public void fetchProductsUsingProcedure() {
 		List<Product> products = productRepository.findProducts(BigDecimal.valueOf(1), BigDecimal.valueOf(15));
+		products.forEach(System.out::println);
+	}
+
+	@Transactional
+	public void prepareQueryByExample() {
+		Category fruitCategory = Category.builder()
+				.name("Fruit")
+				.build();
+
+		Product banana = Product.builder()
+				.name("Banana")
+				.description("Healthy and tasty")
+				.price(BigDecimal.valueOf(4.99))
+				.category(fruitCategory)
+				.build();
+
+		Product apple = Product.builder()
+				.name("Apple")
+				.description("Keeps the doctor away")
+				.price(BigDecimal.valueOf(2.99))
+				.category(fruitCategory)
+				.build();
+
+		productRepository.save(banana);
+		productRepository.save(apple);
+	}
+
+	@Transactional
+	public void fetchProductsUsingQueryByExample() {
+		Product product = Product.builder()
+				.name("bana")
+				.build();
+
+		ExampleMatcher matcher = ExampleMatcher.matching()
+				.withIncludeNullValues()
+				.withIgnorePaths("id", "description")
+				.withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+		Example<Product> example = Example.of(product, matcher);
+
+		List<Product> products = productRepository.findAll(example);
 		products.forEach(System.out::println);
 	}
 }
