@@ -12,6 +12,11 @@ public class StoreApplication {
 		ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 		DynamicQueriesService service = context.getBean(DynamicQueriesService.class);
 
-		service.printProductsByCriteria();
+		service.printProductsByCriteriaUsingSpecifications(
+				"apple",
+				null,
+				null,
+				"fruit"
+		);
 	}
 }

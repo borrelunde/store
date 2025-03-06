@@ -22,4 +22,8 @@ public class ProductSpecification {
 	public static Specification<Product> hasPriceLessThanOrEqualTo(BigDecimal price) {
 		return (root, query, cb) -> cb.lessThanOrEqualTo(root.get("price"), price);
 	}
+
+	public static Specification<Product> hasCategoryName(String name) {
+		return (root, query, cb) -> cb.like(root.get("category").get("name"), "%" + name + "%");
+	}
 }
